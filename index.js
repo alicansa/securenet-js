@@ -48,7 +48,7 @@ module.exports = function(options) {
 
 		var partialUrl = (data.card)? '/PreVault/Card' : '/PreVault/Check';
 
-		util.post(partialUrl, data, next);
+		util.browserTokenization(partialUrl, data, next);
 	};
 
 	////////////////////////////////////////////////////////////////////////////////
