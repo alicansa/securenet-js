@@ -170,6 +170,26 @@ module.exports = function(options) {
 		util.delete('Customers/' + data.customerId + '/PaymentMethod/' + data.paymentMethodId, null, next);
 	};
 
+	secureNet.createCustomerAndPaymentMethod = function(data,next){
+
+		//validate
+		Assert.ok(isObject(data), 'param `data` must be an object.');
+		Assert.ok(isFunction(next), 'param `next` must be a next ');
+
+		util.post('/Customers/Payments', data, next);
+	};
+
+	secureNet.updateCustomerAndPaymentMethod = function(data,next){
+
+		//validate
+		Assert.ok(isObject(data), 'param `data` must be an object.');
+		Assert.ok(isFunction(next), 'param `next` must be a next ');
+		Assert.ok(isInteger(data.customerId), 'param `data.customerId` must be an integer.');
+		Assert.ok(isInteger(data.paymentMethodId) || isInteger(data.paymentMethodId), 'param `data.paymentMethodId` must be an integer or vault token.');
+
+		util.put('Customers/' + data.customerId + '/payments',data, next);
+	};
+
 	////////////////////////////////////////////////////////////////////////////////
 	// AutoBill Plans
 	////////////////////////////////////////////////////////////////////////////////
